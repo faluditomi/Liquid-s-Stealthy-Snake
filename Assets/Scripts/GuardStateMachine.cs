@@ -19,17 +19,22 @@ public class GuardStateMachine : MonoBehaviour
     public event Action OnChasing;
     public event Action OnSwithToPatrol;
     public event Action OnSwithToChase;
+    
+    private void Start()
+    {
+        SetState(GuardState.Patrolling);
+    }
 
     private void Update()
     {
         switch(currentState)
         {
             case GuardState.Patrolling:
-                OnPatrolling.Invoke();
+                OnPatrolling?.Invoke();
             break;
 
             case GuardState.Chasing:
-                OnChasing.Invoke();
+                OnChasing?.Invoke();
             break;
 
             default:
@@ -42,15 +47,20 @@ public class GuardStateMachine : MonoBehaviour
         switch(state)
         {
             case GuardState.Patrolling:
-                OnSwithToPatrol.Invoke();
+                OnSwithToPatrol?.Invoke();
             break;
 
             case GuardState.Chasing:
-                OnSwithToChase.Invoke();
+                OnSwithToChase?.Invoke();
             break;
 
             default:
             break;
         }
+    }
+
+    public GuardState GetCurrentGuardState()
+    {
+        return currentState;
     }
 }

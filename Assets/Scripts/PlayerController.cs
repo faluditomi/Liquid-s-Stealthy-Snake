@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
         myRigidbody = GetComponent<Rigidbody>();
 
-        followTarget = transform.Find("FollowTarget");
+        followTarget = transform.Find("Follow Target");
 
         Cursor.lockState = CursorLockMode.Locked;
 
