@@ -6,6 +6,8 @@ public class PlayerDetection : MonoBehaviour
 {
     private GuardStateMachine myStateMachine;
 
+    private PlayerController playerController;
+
     [SerializeField] private LayerMask obstacleMask;
 
     [SerializeField] private float viewRadius = 10f;
@@ -16,18 +18,21 @@ public class PlayerDetection : MonoBehaviour
         myStateMachine = GetComponent<GuardStateMachine>();
     }
 
+    private void Start()
+    {
+        playerController = myStateMachine.GetPlayer().GetComponent<PlayerController>();
+    }
+
     public bool IsPlayerInSight()
     {
         Vector3 vectorToPlayer = (myStateMachine.GetPlayer().position - transform.position).normalized;
+        
+        float distanceToPlayer = Vector3.Distance(transform.position, myStateMachine.GetPlayer().position);
 
-        if(Vector3.Angle(transform.forward, vectorToPlayer) < viewAngle / 2f)
+        if((Vector3.Angle(transform.forward, vectorToPlayer) < viewAngle / 2f && distanceToPlayer < viewRadius) ||
+        (Vector3.Angle(transform.forward, vectorToPlayer) >= viewAngle / 2f && playerController.GetIsSprinting()))
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, myStateMachine.GetPlayer().position);
-
-            if(distanceToPlayer < viewRadius)
-            {
-                return !Physics.Raycast(transform.position, vectorToPlayer, distanceToPlayer, obstacleMask);
-            }
+            return !Physics.Raycast(transform.position, vectorToPlayer, distanceToPlayer, obstacleMask);
         }
 
         return false;

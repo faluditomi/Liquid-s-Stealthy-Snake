@@ -111,4 +111,9 @@ public class PlayerController : MonoBehaviour
 
         yRotation += input.ReadValue<Vector2>().x;
     }
+
+    public bool GetIsSprinting()
+    {
+        return isSprinting;
+    }
 }
