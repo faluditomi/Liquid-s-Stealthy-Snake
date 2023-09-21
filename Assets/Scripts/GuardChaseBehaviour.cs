@@ -16,6 +16,7 @@ public class GuardChaseBehaviour : MonoBehaviour
 
     private Transform player;
 
+    [Tooltip("The delay between the guard reaching the player's last known position and returning to its patrol route.")]
     [SerializeField] private float delayDuration = 3f;
 
     private void Awake()

@@ -13,7 +13,7 @@ public class GuardStateMachine : MonoBehaviour
 
         Chasing
     }
-
+    [Tooltip("")]
     private GuardState currentState = GuardState.Patrolling;
 
     public event Action OnPatrolling;
@@ -29,7 +29,9 @@ public class GuardStateMachine : MonoBehaviour
 
     private Color lightColor;
 
+    [Tooltip("The speed at which the guard moves while patrolling.")]
     [SerializeField] private float patrolSpeed = 3f;
+    [Tooltip("The speed at which the guard moves while it pursues the player.")]
     [SerializeField] private float chaseSpeed = 6f;
     
     private void Awake()

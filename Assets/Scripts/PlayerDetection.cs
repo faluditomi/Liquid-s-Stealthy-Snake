@@ -10,14 +10,19 @@ public class PlayerDetection : MonoBehaviour
 
     private PlayerController playerController;
 
+    [Tooltip("The layers that guard can't see through.")]
     [SerializeField] private LayerMask obstacleMask;
 
+    [Tooltip("The object that the FOV mesh can be assigned to.")]
     [SerializeField] private MeshFilter viewMeshFilter;
 
     private Mesh viewMesh;
 
+    [Tooltip("Increasing this number makes the FOV cone smoother at the price of a some performance.")]
     [SerializeField] private float meshResolution = 1f;
+    [Tooltip("The distance from which the guard can spot the player. Represented visaully in the scene.")]
     [SerializeField] private float viewRadius = 10f;
+    [Tooltip("The angle at which the guard sees in front of itself. Represented visually in the scene.")]
     [SerializeField] [Range(0,360)] private float viewAngle = 90;
 
     private void Awake()

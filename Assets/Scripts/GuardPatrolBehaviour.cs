@@ -11,14 +11,17 @@ public class GuardPatrolBehaviour : MonoBehaviour
         Linear
     }
 
+    [Tooltip("'Looping' means the guard will move to the 1st waypoint after reaching the last. 'Linear' means the guard goes backwards once reaching the last waypoint.")]
     [SerializeField] private PatrolTypes currentPatrolType = PatrolTypes.Looping;
 
     private GuardStateMachine myStateMachine;
 
     private PlayerDetection myPlayerDetection;
 
+    [Tooltip("The waypoints that make up the guard's route. The order here translates to the game. Don't leave any empty list entries.")]
     [SerializeField] private List<Transform> waypoints;
 
+    [Tooltip("How often the guard check whether they see the player while patrolling.")]
     [SerializeField] private float detectionCheckFrequency = 0.1f;
 
     private int currentWaypoint = 0;

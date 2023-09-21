@@ -17,7 +17,9 @@ public class PlayerController : MonoBehaviour
 
     private float yRotation = 0f;
     private float xRotation = 0f;
+    [Tooltip("The speed at which the player can move quietly.")]
     [SerializeField] private float sneakSpeed = 1f;
+    [Tooltip("The speed that the player moves at when they are sprinting and making noise.")]
     [SerializeField] private float sprintSpeed = 3f;
 
     private bool isSprinting;
