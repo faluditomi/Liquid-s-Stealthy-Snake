@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GuardStateMachine : MonoBehaviour
 {
@@ -19,7 +20,18 @@ public class GuardStateMachine : MonoBehaviour
     public event Action OnChasing;
     public event Action OnSwithToPatrol;
     public event Action OnSwithToChase;
+
+    private NavMeshAgent myAgent;
+
+    private Transform player;
     
+    private void Awake()
+    {
+        myAgent = GetComponent<NavMeshAgent>();
+
+        player = FindObjectOfType<PlayerController>().transform;
+    }
+
     private void Start()
     {
         SetState(GuardState.Patrolling);
@@ -66,5 +78,15 @@ public class GuardStateMachine : MonoBehaviour
     public GuardState GetCurrentGuardState()
     {
         return currentState;
+    }
+
+    public NavMeshAgent GetAgent()
+    {
+        return myAgent;
+    }
+
+    public Transform GetPlayer()
+    {
+        return player;
     }
 }

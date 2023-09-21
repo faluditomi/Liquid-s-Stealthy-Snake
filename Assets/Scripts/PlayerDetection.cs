@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerDetection : MonoBehaviour
 {
-    private Transform player;
+    private GuardStateMachine myStateMachine;
 
     [SerializeField] private LayerMask obstacleMask;
 
@@ -13,16 +13,16 @@ public class PlayerDetection : MonoBehaviour
 
     private void Awake()
     {
-        player = FindObjectOfType<PlayerController>().transform;
+        myStateMachine = GetComponent<GuardStateMachine>();
     }
 
     public bool IsPlayerInSight()
     {
-        Vector3 vectorToPlayer = (player.position - transform.position).normalized;
+        Vector3 vectorToPlayer = (myStateMachine.GetPlayer().position - transform.position).normalized;
 
         if(Vector3.Angle(transform.forward, vectorToPlayer) < viewAngle / 2f)
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            float distanceToPlayer = Vector3.Distance(transform.position, myStateMachine.GetPlayer().position);
 
             if(distanceToPlayer < viewRadius)
             {

@@ -17,8 +17,6 @@ public class GuardPatrolBehaviour : MonoBehaviour
 
     private PlayerDetection myPlayerDetection;
 
-    private NavMeshAgent myAgent;
-
     [SerializeField] private List<Transform> waypoints;
 
     [SerializeField] private float detectionCheckFrequency = 0.5f;
@@ -32,8 +30,6 @@ public class GuardPatrolBehaviour : MonoBehaviour
         myStateMachine = GetComponent<GuardStateMachine>();
 
         myPlayerDetection = GetComponent<PlayerDetection>();
-
-        myAgent = GetComponent<NavMeshAgent>();
     }
 
     private void OnEnable()
@@ -116,7 +112,7 @@ public class GuardPatrolBehaviour : MonoBehaviour
             }
         }
 
-        myAgent.SetDestination(waypoints[currentWaypoint].position);
+        myStateMachine.GetAgent().SetDestination(waypoints[currentWaypoint].position);
     }
 
     private IEnumerator PlayerDetectionBehaviour()
