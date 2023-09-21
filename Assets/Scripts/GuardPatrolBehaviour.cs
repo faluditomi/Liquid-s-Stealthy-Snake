@@ -15,9 +15,13 @@ public class GuardPatrolBehaviour : MonoBehaviour
 
     private GuardStateMachine myStateMachine;
 
+    private PlayerDetection myPlayerDetection;
+
     private NavMeshAgent myAgent;
 
     [SerializeField] private List<Transform> waypoints;
+
+    [SerializeField] private float detectionCheckFrequency = 0.5f;
 
     private int currentWaypoint = 0;
 
@@ -27,17 +31,23 @@ public class GuardPatrolBehaviour : MonoBehaviour
     {
         myStateMachine = GetComponent<GuardStateMachine>();
 
+        myPlayerDetection = GetComponent<PlayerDetection>();
+
         myAgent = GetComponent<NavMeshAgent>();
     }
 
     private void OnEnable()
     {
         myStateMachine.OnSwithToPatrol += GetNewDestination;
+
+        myStateMachine.OnSwithToPatrol += PlayerDetection;
     }
 
     private void OnDisable()
     {
         myStateMachine.OnSwithToPatrol -= GetNewDestination;
+
+        myStateMachine.OnSwithToPatrol -= PlayerDetection;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,6 +61,11 @@ public class GuardPatrolBehaviour : MonoBehaviour
         {
             GetNewDestination();
         }
+    }
+
+    private void PlayerDetection()
+    {
+        StartCoroutine(PlayerDetectionBehaviour());
     }
 
     private void GetNewDestination()
@@ -102,5 +117,19 @@ public class GuardPatrolBehaviour : MonoBehaviour
         }
 
         myAgent.SetDestination(waypoints[currentWaypoint].position);
+    }
+
+    private IEnumerator PlayerDetectionBehaviour()
+    {
+        yield return new WaitForSeconds(detectionCheckFrequency);
+
+        if(myPlayerDetection.IsPlayerInSight())
+        {
+            myStateMachine.SetState(GuardStateMachine.GuardState.Chasing);
+        }
+        else
+        {
+            StartCoroutine(PlayerDetectionBehaviour());
+        }
     }
 }

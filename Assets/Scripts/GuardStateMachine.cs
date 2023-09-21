@@ -47,10 +47,14 @@ public class GuardStateMachine : MonoBehaviour
         switch(state)
         {
             case GuardState.Patrolling:
+                currentState = GuardState.Patrolling;
+
                 OnSwithToPatrol?.Invoke();
             break;
 
             case GuardState.Chasing:
+                currentState = GuardState.Chasing;
+
                 OnSwithToChase?.Invoke();
             break;
 
