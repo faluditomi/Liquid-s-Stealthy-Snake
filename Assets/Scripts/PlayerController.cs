@@ -99,10 +99,12 @@ public class PlayerController : MonoBehaviour
 
     private void Look(InputAction.CallbackContext input)
     {
-        //the transform rotation can only be caught up to the follow transform's rotation
-        //once the cinemachine scripts have had time to run
+        //The transform rotation can only be caught up to the follow transform's rotation
+        //once the cinemachine scripts have had time to run.
         transform.rotation = Quaternion.Euler(0f, yRotation, 0f);
 
+        //Once the guard is rotated properly, we have to reset the follow target and thus
+        //align the camera.
         followTarget.localEulerAngles = new Vector3(xRotation, 0f, 0f);
 
         xRotation += -input.ReadValue<Vector2>().y;
