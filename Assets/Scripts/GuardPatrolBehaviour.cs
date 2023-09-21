@@ -19,7 +19,7 @@ public class GuardPatrolBehaviour : MonoBehaviour
 
     [SerializeField] private List<Transform> waypoints;
 
-    [SerializeField] private float detectionCheckFrequency = 0.5f;
+    [SerializeField] private float detectionCheckFrequency = 0.1f;
 
     private int currentWaypoint = 0;
 

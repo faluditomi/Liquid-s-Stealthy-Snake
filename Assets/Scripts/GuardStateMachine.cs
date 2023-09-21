@@ -24,17 +24,28 @@ public class GuardStateMachine : MonoBehaviour
     private NavMeshAgent myAgent;
 
     private Transform player;
+
+    private Light light;
+
+    private Color lightColor;
+
+    [SerializeField] private float patrolSpeed = 3f;
+    [SerializeField] private float chaseSpeed = 6f;
     
     private void Awake()
     {
         myAgent = GetComponent<NavMeshAgent>();
 
         player = FindObjectOfType<PlayerController>().transform;
+
+        light = FindObjectOfType<Light>();
     }
 
     private void Start()
     {
         SetState(GuardState.Patrolling);
+
+        lightColor = light.color;
     }
 
     private void Update()
@@ -61,11 +72,23 @@ public class GuardStateMachine : MonoBehaviour
             case GuardState.Patrolling:
                 currentState = GuardState.Patrolling;
 
+                myAgent.speed = patrolSpeed;
+
+                light.color = lightColor;
+
+                light.intensity = 1f;
+
                 OnSwithToPatrol?.Invoke();
             break;
 
             case GuardState.Chasing:
                 currentState = GuardState.Chasing;
+
+                myAgent.speed = chaseSpeed;
+
+                light.color = Color.red;
+
+                light.intensity = 10f;
 
                 OnSwithToChase?.Invoke();
             break;

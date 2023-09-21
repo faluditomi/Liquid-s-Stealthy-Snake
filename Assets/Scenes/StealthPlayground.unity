@@ -3138,14 +3138,6 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[3]
       value: 
       objectReference: {fileID: 185479475}
-    - target: {fileID: 1400994002146534750, guid: 89b26173d2e05964f99c4273fa202cb8, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 954a3cf1581e8f641a14c861deee91e5, type: 2}
-    - target: {fileID: 2137674213591557533, guid: 89b26173d2e05964f99c4273fa202cb8, type: 3}
-      propertyPath: meshResolution
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3248651376282714177, guid: 89b26173d2e05964f99c4273fa202cb8, type: 3}
       propertyPath: m_Name
       value: Guard
@@ -3203,10 +3195,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 425389006026434338, guid: 9757b3d59f1bdb9409daee7084a157d1, type: 3}
-      propertyPath: m_Name
-      value: Follow Target
-      objectReference: {fileID: 0}
     - target: {fileID: 1229117703668961233, guid: 9757b3d59f1bdb9409daee7084a157d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.14
@@ -3247,29 +3235,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1665631251858243607, guid: 9757b3d59f1bdb9409daee7084a157d1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.00000071525574
-      objectReference: {fileID: 0}
-    - target: {fileID: 1665631251858243607, guid: 9757b3d59f1bdb9409daee7084a157d1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.000002
-      objectReference: {fileID: 0}
-    - target: {fileID: 5367565875962285822, guid: 9757b3d59f1bdb9409daee7084a157d1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.00000071525574
-      objectReference: {fileID: 0}
-    - target: {fileID: 5367565875962285822, guid: 9757b3d59f1bdb9409daee7084a157d1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.000002
-      objectReference: {fileID: 0}
     - target: {fileID: 7640664034499159468, guid: 9757b3d59f1bdb9409daee7084a157d1, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7640664034499159468, guid: 9757b3d59f1bdb9409daee7084a157d1, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
