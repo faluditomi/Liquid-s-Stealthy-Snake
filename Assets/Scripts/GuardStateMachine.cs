@@ -21,11 +21,13 @@ public class GuardStateMachine : MonoBehaviour
     public event Action OnSwithToPatrol;
     public event Action OnSwithToChase;
 
+    private GuardContainer guardContainer;
+
     private NavMeshAgent myAgent;
 
     private Transform player;
 
-    private Light light;
+    private Light mainLight;
 
     private Color lightColor;
 
@@ -36,18 +38,20 @@ public class GuardStateMachine : MonoBehaviour
     
     private void Awake()
     {
+        guardContainer = FindObjectOfType<GuardContainer>();
+
         myAgent = GetComponent<NavMeshAgent>();
 
         player = FindObjectOfType<PlayerController>().transform;
 
-        light = FindObjectOfType<Light>();
+        mainLight = FindObjectOfType<Light>();
     }
 
     private void Start()
     {
         SetState(GuardState.Patrolling);
 
-        lightColor = light.color;
+        lightColor = mainLight.color;
     }
 
     private void Update()
@@ -72,13 +76,16 @@ public class GuardStateMachine : MonoBehaviour
         switch(state)
         {
             case GuardState.Patrolling:
+                if(guardContainer.IsLastPursuer())
+                {    
+                    mainLight.color = lightColor;
+
+                    mainLight.intensity = 1f;
+                }
+
                 currentState = GuardState.Patrolling;
 
                 myAgent.speed = patrolSpeed;
-
-                light.color = lightColor;
-
-                light.intensity = 1f;
 
                 OnSwithToPatrol?.Invoke();
             break;
@@ -88,9 +95,9 @@ public class GuardStateMachine : MonoBehaviour
 
                 myAgent.speed = chaseSpeed;
 
-                light.color = Color.red;
+                mainLight.color = Color.red;
 
-                light.intensity = 10f;
+                mainLight.intensity = 10f;
 
                 OnSwithToChase?.Invoke();
             break;

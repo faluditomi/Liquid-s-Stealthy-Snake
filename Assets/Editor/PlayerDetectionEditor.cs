@@ -19,7 +19,7 @@ public class PlayerDetectionEditor : Editor
         Vector3 viewAngleB = playerDetection.VectorFromAngle(playerDetection.GetViewAngle() / 2f, false);
 
         Handles.DrawLine(playerDetection.transform.position, playerDetection.transform.position + viewAngleA * playerDetection.GetViewRadius());
-        
+
         Handles.DrawLine(playerDetection.transform.position, playerDetection.transform.position + viewAngleB * playerDetection.GetViewRadius());
     }
 }
